@@ -1,4 +1,4 @@
-const { Sequelize } = require('sequelize')
+const { Sequelize, DataTypes } = require('sequelize')
 const { config } = require('../config/config')
 
 const USER = encodeURIComponent(config.dbUser)
@@ -9,5 +9,7 @@ const sequelize = new Sequelize(URI, {
   dialect: 'mysql',
   logging: console.log
 })
+
+sequelize.User = require('../app/models/User')(sequelize, DataTypes)
 
 module.exports = sequelize
