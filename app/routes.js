@@ -4,6 +4,9 @@ const router = express.Router()
 //middelwares
 const auth = require('./middelwares/auth')
 
+//Policies
+const PostPollicy = require('./policies/PostPollicy')
+
 //Controllers
 const AuthController = require('./controllers/AuthController')
 const PostController = require('./controllers/PostController')
@@ -21,8 +24,8 @@ router.post('/api/signup', AuthController.signUp)
 
 //rutas posts
 router.get('/api/posts', auth, PostController.index)
-router.get('/api/posts/:id', auth, PostController.show)
-router.patch('/api/posts/:id', auth, PostController.update)
-router.delete('/api/posts/:id', auth, PostController.delete)
+router.get('/api/posts/:id', auth, PostController.find, PostPollicy.show, PostController.show)
+router.patch('/api/posts/:id', auth, PostController.find, PostPollicy.update, PostController.update)
+router.delete('/api/posts/:id', auth, PostController.find,PostPollicy.delete,  PostController.delete)
 
 module.exports = router

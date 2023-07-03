@@ -56,5 +56,13 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
     timestamps: false
   });
+
+  // retorna true of false si el user es admin o no
+  User.isAdmin = function(roles){
+    let tmpArray = []
+    roles.forEach(role => tmpArray.push(role.role))
+    return tmpArray.includes('admin')
+  }
+
   return User;
 };
