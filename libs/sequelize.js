@@ -12,8 +12,10 @@ const sequelize = new Sequelize(URI, {
 
 sequelize.User = require('../app/models/User')(sequelize, DataTypes)
 sequelize.Post = require('../app/models/Post')(sequelize, DataTypes)
+sequelize.Role = require('../app/models/Role')(sequelize, DataTypes)
 
 sequelize.User.associate(sequelize)
 sequelize.Post.associate(sequelize)
+sequelize.Role.associate(sequelize)
 
 module.exports = sequelize
